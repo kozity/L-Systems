@@ -10,7 +10,7 @@ class LSys:
         #self.initialHeading = initHead
 
 
-    def returnString(self, n):
+    def returnString(self, n): # returns (string sequence)
         sequence = self.axiom
         for i in range(n):
         # iterate n times
@@ -22,15 +22,16 @@ class LSys:
                 sequence = sequence + self.alphabet[j][0]
         return sequence
 
-    def generateString(self, n):
+    def generateString(self, n): # prints system string
         print(self.returnString(n))
         wait = input("\nPress ENTER to close")
 
-    def generateFile(self, n):
+    def generateFile(self, n): # generates text file containing system string in given location
         with open('C:/Code/Python/L-Systems/Text Files/'+self.filePrefix+'_n'+str(n)+'.txt', 'x') as f:
             f.write(self.returnString(n))
-
-    def generateTurtle(self, n):
+        # location must be checked and updated accordingly whenever used
+            
+    def generateTurtle(self, n): # generates turtle graphics window that draws system
         stack = []
         import turtle
         turtle.pensize(1)
@@ -59,6 +60,8 @@ class LSys:
         turtle.bgcolor('white')
         turtle.exitonclick()
 
+# LSys() initializations
+# dictionaries take format: {character: [string to be replaced with, function], ...}; for function keywords, see if/elif block in generateTurtle()
 fractalPlant = LSys({'X': ['F+[[X]-X]-F[-FX]+X', 'none'],
                      'F': ['FF', 'forward'],
                      '+': ['+', 'left'],
